@@ -1,7 +1,6 @@
 package com.example.khachsan.controller;
 
 
-import ch.qos.logback.core.model.Model;
 import com.example.khachsan.entity.User;
 import com.example.khachsan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/DangNhap")
+@RequestMapping("")
 public class DangNhapController {
 
     @Autowired
     private UserService service;
 
-    @GetMapping(value = "")
+    @GetMapping(value = "/DangNhap")
     public String showFormDangNhap() {
-        return "DangNhap";
+        return "login";
     }
 
     @ModelAttribute("user")
@@ -29,16 +28,25 @@ public class DangNhapController {
         return new User();
     }
 
-    @PostMapping("")
+    @PostMapping("/DangNhap")
     public String DangNhap(ModelAndView model,@ModelAttribute User users){
         for (User user : service.findAll()) {
             if(user.getEmail().equals(users.getEmail()) && user.getPassword().equals(users.getPassword())){
-            return "TrangChu" ;
+            return "index";
             } else {
                 model.addObject("message", "Sai Tên Đăng Nhập Hoặc Mật khẩu");
             }
         }
-        return "DangNhap";
+        return "login";
     }
 
+    @GetMapping(value = "/booknow")
+    public String showFormbook() {
+        return "booknow";
+    }
+
+    @GetMapping(value = "/returnHome")
+    public String showHome() {
+        return "redirect:/DangNhap";
+    }
 }
