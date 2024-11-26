@@ -41,12 +41,36 @@ public class DangNhapController {
     }
 
     @GetMapping(value = "/booknow")
-    public String showFormbook() {
+    public String showFormBook() {
         return "booknow";
     }
 
     @GetMapping(value = "/returnHome")
     public String showHome() {
         return "redirect:/DangNhap";
+    }
+
+    @GetMapping(value = "/contact")
+    public String showContact() {
+        return "contact";
+    }
+
+
+    @GetMapping(value = "/about")
+    public String showAbout() {
+        return "about";
+    }
+    @GetMapping(value = "/blog")
+    public String showBlog() {
+        return "blog";
+    }
+    @GetMapping(value = "/rooms")
+    public String showRooms() {
+        return "rooms";
+    }
+
+    @GetMapping(value = "/blogSingle")
+    public String showBlogSingle() {
+        return "blog-single";
     }
 }

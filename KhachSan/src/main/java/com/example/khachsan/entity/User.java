@@ -1,8 +1,5 @@
 package com.example.khachsan.entity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
 import jakarta.validation.Validation;
@@ -19,6 +16,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -43,6 +41,22 @@ public class User implements Validator {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "user")
+    private List<Booking> bookings;
+
+    public User(Long userId, String email, String password, String phone, String fullName, String address, String role, LocalDateTime createdAt, LocalDateTime updatedAt, List<Booking> bookings) {
+        this.userId = userId;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.fullName = fullName;
+        this.address = address;
+        this.role = role;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.bookings = bookings;
+    }
 
     public User() {
     }
