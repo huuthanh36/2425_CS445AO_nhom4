@@ -1,10 +1,10 @@
 package com.example.khachsan.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class RoomType {
@@ -13,6 +13,10 @@ public class RoomType {
     private Long roomTypeId;
     private String roomTypeName;
     private double price;
+
+    @OneToMany(mappedBy = "roomType")
+    private Set<Room> rooms = new HashSet<>();
+    // Getters and Setters
 
     // Getters and Setters
 
@@ -40,11 +44,20 @@ public class RoomType {
         this.price = price;
     }
 
-    public RoomType(Long roomTypeId, String roomTypeName, double price) {
+    public RoomType(Long roomTypeId, String roomTypeName, double price, Set<Room> rooms) {
         this.roomTypeId = roomTypeId;
         this.roomTypeName = roomTypeName;
         this.price = price;
+        this.rooms = rooms;
     }
+
+    public RoomType(String roomTypeName, double price, Set<Room> rooms) {
+        this.roomTypeName = roomTypeName;
+        this.price = price;
+        this.rooms = rooms;
+    }
+
+
 
     public RoomType() {
     }

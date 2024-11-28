@@ -4,15 +4,16 @@ package com.example.khachsan.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookingId;
-    private LocalDate bookingDate;
-    private LocalDate checkInDate;
-    private LocalDate checkOutDate;
+    private LocalDateTime bookingDate;
+    private LocalDateTime checkInDate;
+    private LocalDateTime checkOutDate;
     private double totalPrice;
 
     @ManyToOne
@@ -25,6 +26,7 @@ public class Booking {
 
     // Getters and Setters
 
+
     public Long getBookingId() {
         return bookingId;
     }
@@ -33,27 +35,27 @@ public class Booking {
         this.bookingId = bookingId;
     }
 
-    public LocalDate getBookingDate() {
+    public LocalDateTime getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(LocalDate bookingDate) {
+    public void setBookingDate(LocalDateTime bookingDate) {
         this.bookingDate = bookingDate;
     }
 
-    public LocalDate getCheckInDate() {
+    public LocalDateTime getCheckInDate() {
         return checkInDate;
     }
 
-    public void setCheckInDate(LocalDate checkInDate) {
+    public void setCheckInDate(LocalDateTime checkInDate) {
         this.checkInDate = checkInDate;
     }
 
-    public LocalDate getCheckOutDate() {
+    public LocalDateTime getCheckOutDate() {
         return checkOutDate;
     }
 
-    public void setCheckOutDate(LocalDate checkOutDate) {
+    public void setCheckOutDate(LocalDateTime checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
 
@@ -81,7 +83,11 @@ public class Booking {
         this.user = user;
     }
 
-    public Booking(Long bookingId, LocalDate bookingDate, LocalDate checkInDate, LocalDate checkOutDate, double totalPrice, Room room, User user) {
+    public Booking(LocalDateTime bookingDate) {
+        this.bookingDate = bookingDate;
+    }
+
+    public Booking(Long bookingId, LocalDateTime bookingDate, LocalDateTime checkInDate, LocalDateTime checkOutDate, double totalPrice, Room room, User user) {
         this.bookingId = bookingId;
         this.bookingDate = bookingDate;
         this.checkInDate = checkInDate;
@@ -90,7 +96,6 @@ public class Booking {
         this.room = room;
         this.user = user;
     }
-
 
     public Booking() {
     }

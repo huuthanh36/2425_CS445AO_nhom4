@@ -1,15 +1,16 @@
 package com.example.khachsan.controller;
 
 
+import ch.qos.logback.core.model.Model;
 import com.example.khachsan.entity.User;
 import com.example.khachsan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("")
@@ -29,16 +30,48 @@ public class DangNhapController {
     }
 
     @PostMapping("/DangNhap")
-    public String DangNhap(ModelAndView model,@ModelAttribute User users){
+    public String DangNhap(ModelMap model,@ModelAttribute User users){
         for (User user : service.findAll()) {
             if(user.getEmail().equals(users.getEmail()) && user.getPassword().equals(users.getPassword())){
             return "index";
             } else {
-                model.addObject("message", "Sai Tên Đăng Nhập Hoặc Mật khẩu");
+                model.addAttribute("message", "Sai Tên Đăng Nhập Hoặc Mật khẩu");
             }
         }
         return "login";
     }
+
+    @GetMapping("/listAccount")
+    public String showList(ModelMap model){
+        List<User> list = service.findAll();
+        model.addAttribute("userList", list);
+        return "accountManagement";
+    }
+
+
+    @PostMapping("listAccount/deleteCheckBox")
+    public String delete(@RequestParam("idChecked") List<String> idDeletes){
+
+        if(idDeletes != null){
+            for(String idDeleteStr : idDeletes){
+                int idDelete = Integer.parseInt(idDeleteStr);
+                service.delete(idDelete);
+            }
+        }
+        return "redirect:/listAccount";
+    }
+    @PostMapping("/listAccount/delete")
+    public String deleteProduct(@ModelAttribute("id")int id){
+        service.delete(id);
+        return "redirect:/accountManagement";
+    }
+
+
+
+
+
+
+
 
     @GetMapping(value = "/booknow")
     public String showFormBook() {

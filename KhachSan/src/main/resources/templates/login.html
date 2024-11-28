@@ -3,7 +3,7 @@
 <html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>Login Form Design | wwww.codingdung.com</title>
+    <title>Login Form Design </title>
     <link rel="stylesheet" href="style.css">
 </head>
 <style>
@@ -190,7 +190,7 @@
             <input type="submit" value="Login">
         </div>
         <div class="signup-link">
-            Not a member? <a href="#">Signup now</a>
+            Not a member? <a th:href="@{/register}">Signup now</a>
         </div>
     </form>
 </div>

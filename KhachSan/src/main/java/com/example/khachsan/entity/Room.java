@@ -2,6 +2,9 @@ package com.example.khachsan.entity;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Entity
 public class Room {
@@ -15,6 +18,8 @@ public class Room {
     @JoinColumn(name = "roomTypeId")
     private RoomType roomType;
 
+    @OneToMany(mappedBy = "room")
+    private Set<Booking> bookkings = new HashSet<>();
     // Getters and Setters
 
     public Long getRoomId() {
@@ -49,13 +54,29 @@ public class Room {
         this.roomType = roomType;
     }
 
+    public Set<Booking> getBookkings() {
+        return bookkings;
+    }
+
+    public void setBookkings(Set<Booking> bookkings) {
+        this.bookkings = bookkings;
+    }
+
     public Room() {
     }
 
-    public Room(Long roomId, String roomName, String status, RoomType roomType) {
+    public Room(Long roomId, String roomName, String status, RoomType roomType, Set<Booking> bookkings) {
         this.roomId = roomId;
         this.roomName = roomName;
         this.status = status;
         this.roomType = roomType;
+        this.bookkings = bookkings;
+    }
+
+    public Room(String roomName, String status, RoomType roomType, Set<Booking> bookkings) {
+        this.roomName = roomName;
+        this.status = status;
+        this.roomType = roomType;
+        this.bookkings = bookkings;
     }
 }

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="/https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination a {
+            margin: 0 5px;
+            text-decoration: none;
+        }
+
+        .pagination button {
+            padding: 5px 10px;
+            border: none;
+            background-color: #f2f2f2;
+            cursor: pointer;
+        }
+
+        .pagination a.active button {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+
+    <script>
+
+        $(document).ready(function() {
+            $('#example').DataTable({
+                "pageLength": 5,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "pagingType": "full_numbers"
+            });
+        });
+
+    </script>
+</head>
+<body style="background-color: beige">
+
+<div class="container">
+
+<form th:action='@{/listAccount/deleteCheckBox}'
+      method="POST">
+    <table th:if="${userList!=null}" style="margin-top:20px;" id="example">
+        <thead class="table-dark">
+        <tr>
+            <th>STT</th>
+            <th>Họ Và Tên</th>
+            <th>Địa chỉ</th>
+            <th>email</th>
+            <th>Role</th>
+            <th>Update</th>
+            <th>Delete by checkbox</th>
+
+        </tr>
+
+        </thead>
+        <tbody id="result">
+        <tr th:each="user,status: ${userList}" th:object="${user}" >
+            <td th:text="${status.index + 1}"> </td>
+            <td th:text="*{fullName}"></td>
+            <td th:text="*{address}"></td>
+            <td th:text="*{email}"></td>
+            <td th:text="*{role}"></td>
+
+            <td><a th:text="update">update</a></td>
+            <!--            <td><a th:href="@{/khuyenMai/delete/(id=*{id})}"-->
+            <!--                   class="btn btn-danger"-->
+            <!--                   th:attr="data-confirm='bạn có muốn xóa chương trình khuyến mãi' + *{title}"-->
+            <!--                   onclick="return confirmDelete(this.getAttribute('data-confirm'));">Delete</a>-->
+            <!--            </td>-->
+
+<!--            <td>-->
+
+<!--                <button type="button" class="btn btn-danger" data-bs-toggle="modal"-->
+<!--                        data-bs-target="#exampleModal"-->
+<!--                        th:attr="onclick=|sendInfoToModal('${user.id}','${user.fullName}')|"-->
+<!--                >-->
+<!--                    Xóa-->
+<!--                </button>-->
+<!--            </td>-->
+            <td>
+                <input type="checkbox" th:name="idChecked" th:value="${user.getId()}"/>
+            </td>
+
+        </tr>
+        </tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <button type="submit" name='delete' value="delete"
+                        class='btn btn-secondary btn-sm'
+                        data-toggle="tooltip" data-placement="right">
+                    Submit
+                </button>
+            </td>
+        </tr>
+
+    </table>
+</form>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form th:action="@{/listAccount/delete}" method="post">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="id" name="id">
+                    Bạn có chắc chắn muốn xóa account có tên là
+                    <span class="text-danger" id="name_delete"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Hủy
+                    </button>
+                    <button type="submit" class="btn btn-primary">Xóa</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function sendInfoToModal(id, name) {
+        document.getElementById("name_delete").innerText = name;
+        document.getElementById("id").value = id;
+    }
+    function confirmDelete(message) {
+        return confirm(message);
+    }
+</script>
+
+</div>
+</body>
+</html>

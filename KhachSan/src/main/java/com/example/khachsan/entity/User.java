@@ -16,6 +16,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -43,9 +44,28 @@ public class User implements Validator {
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "user")
-    private List<Booking> bookings;
+    private Set<Booking> bookkings = new HashSet<>();
 
-    public User(Long userId, String email, String password, String phone, String fullName, String address, String role, LocalDateTime createdAt, LocalDateTime updatedAt, List<Booking> bookings) {
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Set<Booking> getBookkings() {
+        return bookkings;
+    }
+
+    public void setBookkings(Set<Booking> bookkings) {
+        this.bookkings = bookkings;
+    }
+
+    public User() {
+    }
+
+    public User(Long userId, String email, String password, String phone, String fullName, String address, String role, LocalDateTime createdAt, LocalDateTime updatedAt, Set<Booking> bookkings) {
         this.userId = userId;
         this.email = email;
         this.password = password;
@@ -55,19 +75,21 @@ public class User implements Validator {
         this.role = role;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.bookings = bookings;
+        this.bookkings = bookkings;
     }
 
-    public User() {
-    }
-    public User(String password, String email, String phone, String fullName, String address, String role) {
-        this.password = password;
+    public User(String email, String password, String phone, String fullName, String address, String role, LocalDateTime createdAt, LocalDateTime updatedAt, Set<Booking> bookkings) {
         this.email = email;
+        this.password = password;
         this.phone = phone;
         this.fullName = fullName;
         this.address = address;
         this.role = role;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.bookkings = bookkings;
     }
+
     // Getters and Setters
     public Long getId() {
         return userId;
