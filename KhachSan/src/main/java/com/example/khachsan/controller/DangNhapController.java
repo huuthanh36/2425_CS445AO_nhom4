@@ -33,6 +33,7 @@ public class DangNhapController {
     public String DangNhap(ModelMap model,@ModelAttribute User users){
         for (User user : service.findAll()) {
             if(user.getEmail().equals(users.getEmail()) && user.getPassword().equals(users.getPassword())){
+                model.addAttribute("user", user);
             return "index";
             } else {
                 model.addAttribute("message", "Sai Tên Đăng Nhập Hoặc Mật khẩu");
@@ -73,10 +74,7 @@ public class DangNhapController {
 
 
 
-    @GetMapping(value = "/booknow")
-    public String showFormBook() {
-        return "booknow";
-    }
+
 
     @GetMapping(value = "/returnHome")
     public String showHome() {

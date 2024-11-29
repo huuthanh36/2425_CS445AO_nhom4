@@ -68,7 +68,7 @@
 <body>
 <div class="container">
     <h2>Đăng Ký Tài Khoản</h2>
-    <form action="#" th:action="@{/register}" th:object="${user}" method="post">
+    <form  th:action="@{/register}" th:object="${user}" method="post">
 
         <div class="form-group">
             <label for="email">Email</label>
@@ -99,16 +99,4 @@
 </div>
 </body>
 </html>
-private Long userId;
-@NotEmpty
-private String email;
-@NotEmpty
-private String password;
-@NotEmpty
-private String phone;
-@NotEmpty
-private String fullName;
-@NotEmpty
-private String address;
-@NotEmpty
-private String role;
+
