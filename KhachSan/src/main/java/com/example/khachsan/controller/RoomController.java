@@ -12,11 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Controller
@@ -34,6 +33,8 @@ public class RoomController {
         return "bookingManagement";
     }
 
+
+
     @ModelAttribute("booking")
     public Booking booking(){
         return new Booking();
@@ -45,25 +46,8 @@ public class RoomController {
     }
 
 
-    @GetMapping(value = "/booknow")
-    public String showFormBook(ModelMap model, HttpSession session) {
-        User loggedInUser = (User) session.getAttribute("loggedInUser");
-        List<Room> list1 = rService.findAll();
-        model.addAttribute("roomList", list1);
 
-        if (loggedInUser != null) {
-            model.addAttribute("user", loggedInUser);
-            return "booknow";
-        } else {
-            model.addAttribute("message", "Bạn cần đăng nhập để xem trang này.");
-            return "login";
-        }
-    }
-    @PostMapping(value="/booking")
-    public String booking(@Valid @ModelAttribute Booking booking, BindingResult bindingResult){
 
-        return "redirect:/index";
-    }
 
     @GetMapping("/profile")
     public String profile(HttpSession session, ModelMap model) {
@@ -76,6 +60,32 @@ public class RoomController {
             return "login";
         }
     }
+
+    @GetMapping("/listBooking")
+    public String showList(ModelMap model){
+        List<Booking> list = bkService.findAll();
+        model.addAttribute("bookingList", list);
+        return "bookingManagement";
+
+
+    }
+
+    @PostMapping("/listBooking/deleteCheckBox")
+    public String delete(@RequestParam("idChecked") List<String> idDeletes){
+
+        if(idDeletes != null){
+            for(String idDeleteStr : idDeletes){
+                int idDelete = Integer.parseInt(idDeleteStr);
+                bkService.delete(idDelete);
+            }
+        }
+        return "redirect:/listAccount";
+    }
+
+
+
+
+
 
 
 

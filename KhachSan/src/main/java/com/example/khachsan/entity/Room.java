@@ -1,5 +1,7 @@
 package com.example.khachsan.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -13,14 +15,31 @@ public class Room {
     private Long roomId;
     private String roomName;
     private String status;
+    private Double price;
 
-    @ManyToOne
-    @JoinColumn(name = "roomTypeId")
-    private RoomType roomType;
-
+    @JsonBackReference
     @OneToMany(mappedBy = "room")
-    private Set<Booking> bookkings = new HashSet<>();
+    private Set<Booking> bookkings ;
     // Getters and Setters
+
+
+    public Room() {
+    }
+
+    public Room(Long roomId, String roomName, String status, Double price, Set<Booking> bookkings) {
+        this.roomId = roomId;
+        this.roomName = roomName;
+        this.status = status;
+        this.price = price;
+        this.bookkings = bookkings;
+    }
+
+    public Room(String roomName, String status, Double price, Set<Booking> bookkings) {
+        this.roomName = roomName;
+        this.status = status;
+        this.price = price;
+        this.bookkings = bookkings;
+    }
 
     public Long getRoomId() {
         return roomId;
@@ -46,12 +65,12 @@ public class Room {
         this.status = status;
     }
 
-    public RoomType getRoomType() {
-        return roomType;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setRoomType(RoomType roomType) {
-        this.roomType = roomType;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public Set<Booking> getBookkings() {
@@ -59,24 +78,6 @@ public class Room {
     }
 
     public void setBookkings(Set<Booking> bookkings) {
-        this.bookkings = bookkings;
-    }
-
-    public Room() {
-    }
-
-    public Room(Long roomId, String roomName, String status, RoomType roomType, Set<Booking> bookkings) {
-        this.roomId = roomId;
-        this.roomName = roomName;
-        this.status = status;
-        this.roomType = roomType;
-        this.bookkings = bookkings;
-    }
-
-    public Room(String roomName, String status, RoomType roomType, Set<Booking> bookkings) {
-        this.roomName = roomName;
-        this.status = status;
-        this.roomType = roomType;
         this.bookkings = bookkings;
     }
 }

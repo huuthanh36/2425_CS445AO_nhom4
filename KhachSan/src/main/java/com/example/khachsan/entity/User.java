@@ -1,4 +1,6 @@
 package com.example.khachsan.entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
@@ -46,28 +48,9 @@ public class User implements Validator {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
-
+    @JsonBackReference
     @OneToMany(mappedBy = "user")
-    private Set<Booking> bookkings = new HashSet<>();
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Set<Booking> getBookkings() {
-        return bookkings;
-    }
-
-    public void setBookkings(Set<Booking> bookkings) {
-        this.bookkings = bookkings;
-    }
-
-    public User() {
-    }
+    private Set<Booking> bookkings ;
 
     public User(Long userId, String email, String password, String phone, String fullName, String address, String role, LocalDateTime createdAt, LocalDateTime updatedAt, Set<Booking> bookkings) {
         this.userId = userId;
@@ -82,51 +65,15 @@ public class User implements Validator {
         this.bookkings = bookkings;
     }
 
-    public User(String email, String password, String phone, String fullName, String address, String role, LocalDateTime createdAt, LocalDateTime updatedAt, Set<Booking> bookkings) {
-        this.email = email;
-        this.password = password;
-        this.phone = phone;
-        this.fullName = fullName;
-        this.address = address;
-        this.role = role;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.bookkings = bookkings;
+    public User() {
     }
 
-    // Getters and Setters
-    public Long getId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setId(Long id) {
-        this.userId = id;
-    }
-
-    // ... Other getters and setters
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getEmail() {
@@ -135,6 +82,14 @@ public class User implements Validator {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPhone() {
@@ -167,6 +122,30 @@ public class User implements Validator {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Set<Booking> getBookkings() {
+        return bookkings;
+    }
+
+    public void setBookkings(Set<Booking> bookkings) {
+        this.bookkings = bookkings;
     }
 
     @Override

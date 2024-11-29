@@ -21,7 +21,7 @@
   </head>
   <body>
 
-  <header th:replace = "header :: header"></header>
+  <div th:insert="~{header :: header}"></div>
 
     <section class="site-hero site-hero-innerpage overlay" data-stellar-background-ratio="0.5" style="background-image: url(/images/big_image_1.jpg);">
       <div class="container">
@@ -44,14 +44,15 @@
         <div class="row">
           <div class="col-md-6">
             <h2 class="mb-5">Reservation Form</h2>
-                <form th:href="@{/booking}" th:object="${booking}" method="post">
-                  <div class="row">
+            <form th:action="@{/booknow}" th:object="${booking}" method="post">
+
+              <div class="row">
                       <div class="col-sm-6 form-group">
 
                           <label >Arrival Date</label>
                           <div style="position: relative;">
                             <span  style="position: absolute; right: 10px; top: 10px;"></span>
-                            <input type='date' th:field="*{checkInDate}" class="form-control" id='arrival_date' />
+                            <input type="text" th:field="*{checkInDate}" class="form-control"/>
                           </div>
                       </div>
 
@@ -60,12 +61,12 @@
                           <label >Departure Date</label>
                           <div style="position: relative;">
                             <span  style="position: absolute; right: 10px; top: 10px;"></span>
-                            <input type='date' th:field="*{checkOutDate}"  class="form-control" id='departure_date' />
+                            <input type="text" th:field="*{checkOutDate}"  class="form-control" />
                           </div>
                       </div>
 
                   </div>
-                  <input type="hidden" th:value="${user.userId}" th:field="*{user}" />
+
 
                   <div class="row">
                     <div class="col-md-6 form-group">
@@ -75,27 +76,13 @@
                       </select>
                     </div>
 
-                    <div class="col-md-6 form-group">
-                      <label >Guests</label>
-                      <select name=""  class="form-control">
-                        <option value="">1 Guest</option>
-                        <option value="">2 Guests</option>
-                        <option value="">3 Guests</option>
-                        <option value="">4 Guests</option>
-                        <option value="">5+ Guests</option>
-                      </select>
-                    </div>
+
                   </div>
+
                   <div class="row">
                     <div class="col-md-12 form-group">
-                      <label for="email">Email</label>
-                      <input type="email" id="email" class="form-control ">
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12 form-group">
-                      <label for="message">Write a Note</label>
-                      <textarea name="message" id="message" class="form-control " cols="30" rows="8"></textarea>
+                      <label >Write a Note</label>
+                      <textarea type="text" id="note" th:field="*{describe}" class="form-control" rows="5"></textarea>
                     </div>
                   </div>
                   <div class="row">

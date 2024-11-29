@@ -1,10 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>DataTables Example</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="/https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="/https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+    <!-- jQuery -->
+    <script src="/https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- DataTables JS -->
+    <script type="text/javascript" src="/https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="/https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <!-- Bootstrap JS (Optional) -->
+    <script src="/https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                "pagingType": "full_numbers",
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "pageLength": 5
+            });
+        });
+    </script>
 </head>
 <body>
 
+<div class="container">
+
+    <form th:action="@{/listBooking/deleteCheckBox}" method="post">
+        <table th:if="${bookingList!=null}" class="display " style="margin-top:auto;" id="example">
+            <thead>
+            <tr>
+                <th>STT</th>
+                <th>Booking Date</th>
+                <th>Check in Date</th>
+                <th>Check Out Date</th>
+                <th>Room Name</th>
+                <th>User Name</th>
+                <th>Total Price</th>
+                <th>Delete by checkbox</th>
+            </tr>
+
+            </thead>
+            <tbody id="result">
+            <tr th:each="Booking,status: ${bookingList}" th:object="${booking}" >
+                <td th:text="${status.index + 1}"> </td>
+                <td th:text="*{bookingDate}"></td>
+                <td th:text="*{checkInDate}"></td>
+                <td th:text="*{checkOutDate}"></td>
+                <td th:text="*{room.roomName}"></td>
+                <td th:text="*{user.fullName}"></td>
+                <td th:text="*{totalPrice}"></td>
+
+                <td><a th:text="update">update</a></td>
+
+                <td>
+                    <input type="checkbox" th:name="idChecked" th:value="${booking.getId()}"/>
+                </td>
+
+            </tr>
+            </tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <button type="submit" name='delete' value="delete"
+                            class='btn btn-secondary btn-sm'
+                            colspan="7" style="float:left;"
+                            data-toggle="tooltip" data-placement="right" th:attr="data-confirm='bạn có muốn xóa'"
+                            onclick="return confirmDelete(this.getAttribute('data-confirm'));" >
+
+                        Submit
+                    </button>
+                </td>
+            </tr>
+
+        </table>
+    </form>
+
+
+
+    <!--&lt;!&ndash; Modal &ndash;&gt;-->
+    <!--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">-->
+    <!--    <div class="modal-dialog">-->
+    <!--        <div class="modal-content">-->
+    <!--            <form th:action="@{/listAccount/deleteCheckBox}" method="post">-->
+    <!--                <div class="modal-header">-->
+    <!--                    <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa</h1>-->
+    <!--                    <button type="button" class="btn-close" data-bs-dismiss="modal"-->
+    <!--                            aria-label="Close"></button>-->
+    <!--                </div>-->
+    <!--                <div class="modal-body">-->
+    <!--                    <input type="hidden" id="id" name="id">-->
+    <!--                    Bạn có chắc chắn muốn xóa ?-->
+    <!--                    <span class="text-danger" id="name_delete"></span>-->
+    <!--                </div>-->
+    <!--                <div class="modal-footer">-->
+    <!--                    <button type="button" class="btn btn-secondary"-->
+    <!--                            data-bs-dismiss="modal">Hủy-->
+    <!--                    </button>-->
+    <!--                    <button type="submit" class="btn btn-primary">Xóa</button>-->
+    <!--                </div>-->
+    <!--            </form>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</div>-->
+
+    <!--                -->
+
+</div>
+
 </body>
+<script>
+
+    function confirmDelete(message) {
+        return confirm(message);
+    }
+</script>
 </html>
