@@ -2,6 +2,7 @@ package com.example.khachsan.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookingId;
+    @NotNull
     private LocalDateTime bookingDate;
     private LocalDateTime checkInDate;
     private LocalDateTime checkOutDate;

@@ -68,35 +68,55 @@
 <body>
 <div class="container">
     <h2>Đăng Ký Tài Khoản</h2>
-    <form  th:action="@{/register}" th:object="${user}" method="post">
+    <form onload="setHiddenDateTime()" th:action="@{/register}" th:object="${user}" method="post">
 
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" th:field="*{email}" required>
+            <small style="color: red" th:if="${#fields.hasErrors('email')}" th:errors ="*{email}"></small>
         </div>
         <div class="form-group">
             <label for="username">Họ và Tên</label>
             <input type="text" id="username" name="username" th:field="*{fullName}" required>
+            <small style="color: red" th:if="${#fields.hasErrors('fullName')}" th:errors ="*{fullName}"></small>
         </div>
         <div class="form-group">
             <label >Số Điện Thoại</label>
             <input type="text" th:field="*{phone}" required>
+            <small style="color: red" th:if="${#fields.hasErrors('phone')}" th:errors ="*{phone}"></small>
         </div>
         <div class="form-group">
             <label >Địa Chỉ</label>
             <input type="text" th:field="*{address}"  required>
+            <small style="color: red" th:if="${#fields.hasErrors('address')}" th:errors ="*{address}"></small>
         </div>
         <div class="form-group">
             <label for="password">Mật Khẩu</label>
             <input type="password" id="password" name="password" th:field="*{password}" required>
+            <small style="color: red" th:if="${#fields.hasErrors('password')}" th:errors ="*{password}"></small>
         </div>
-        <input type="hidden" ></input>
+        <input type="hidden" value="guest" id="hiddenGuest" name="hiddenGuest" th:field="*{role}">
+        <input type="hidden"  id="hiddenDateTime" th:field="*{createdAt}" name="hiddenDateTime">
         <button type="submit">Đăng Ký</button>
     </form>
     <div class="form-footer">
         <p>Đã có tài khoản? <a th:href="@{/DangNhap}">Đăng nhập</a></p>
     </div>
 </div>
+<script> function setHiddenDateTime() {
+    let now = new Date();
+    var year = now.getFullYear();
+    var month = String(now.getMonth() + 1).padStart(2, '0');
+    // Tháng bắt đầu từ 0
+     var day = String(now.getDate()).padStart(2, '0');
+     var hours = String(now.getHours()).padStart(2, '0');
+     var minutes = String(now.getMinutes()).padStart(2, '0');
+     var seconds = String(now.getSeconds()).padStart(2, '0');
+     var datetimeValue = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+     document.getElementById("hiddenDateTime").value = datetimeValue;
+     document.getElementById("hiddenGuest").value = "guest";}
+</script>
+
 </body>
 </html>
 

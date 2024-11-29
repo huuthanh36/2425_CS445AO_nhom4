@@ -3,8 +3,10 @@ import jakarta.persistence.*;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
 import jakarta.validation.Validation;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.executable.ExecutableValidator;
 import jakarta.validation.metadata.BeanDescriptor;
 import org.hibernate.validator.constraints.Range;
@@ -26,10 +28,12 @@ public class User implements Validator {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
+    @Email
     @NotEmpty
     private String email;
     @NotEmpty
     private String password;
+    @Pattern(regexp="^(0|\\+84)[3|5|7|8|9][0-9]{8}$", message="Số điện thoại không hợp lệ")
     @NotEmpty
     private String phone;
     @NotEmpty
@@ -184,10 +188,7 @@ public class User implements Validator {
             errors.rejectValue("email", "field.invalid", "Invalid email format");
         }
 
-        // Validate createdAt
-        if (user.getCreatedAt() == null) {
-            errors.rejectValue("createdAt", "field.required", "CreatedAt is required");
-        }
+
 
 
     }

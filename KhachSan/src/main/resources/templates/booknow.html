@@ -50,8 +50,8 @@
 
                           <label >Arrival Date</label>
                           <div style="position: relative;">
-                            <span class="fa fa-calendar icon" style="position: absolute; right: 10px; top: 10px;"></span>
-                            <input type='text' class="form-control" id='arrival_date' />
+                            <span  style="position: absolute; right: 10px; top: 10px;"></span>
+                            <input type='date' th:field="*{checkInDate}" class="form-control" id='arrival_date' />
                           </div>
                       </div>
 
@@ -59,18 +59,18 @@
 
                           <label >Departure Date</label>
                           <div style="position: relative;">
-                            <span class="fa fa-calendar icon" style="position: absolute; right: 10px; top: 10px;"></span>
-                            <input type='text' class="form-control" id='departure_date' />
+                            <span  style="position: absolute; right: 10px; top: 10px;"></span>
+                            <input type='date' th:field="*{checkOutDate}"  class="form-control" id='departure_date' />
                           </div>
                       </div>
 
                   </div>
-
+                  <input type="hidden" th:value="${user.userId}" th:field="*{user}" />
 
                   <div class="row">
                     <div class="col-md-6 form-group">
                       <label >Room</label>
-                      <select  th:field="*{room}">
+                      <select id="roomSelect" onchange="updateImage()" th:field="*{room}"  class="form-control">
                         <option th:each="room,status: ${roomList}" th:text="${room.roomName}" th:value="${room.roomId}"></option>
                       </select>
                     </div>
@@ -105,6 +105,26 @@
                   </div>
                 </form>
               </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-5">
+            <h3 class="mb-5">Featured Room</h3>
+            <div class="media d-block room mb-0">
+              <figure>
+                <img id="roomImage" src="/images/img_1.jpg" alt="Room Image" class="img-fluid">
+                <div class="overlap-text">
+                  <span>
+                    Featured Room
+                    <span class="ion-ios-star"></span>
+                    <span class="ion-ios-star"></span>
+                    <span class="ion-ios-star"></span>
+                  </span>
+                </div>
+              </figure>
+
+            </div>
+          </div>
+
+
         </div>
       </div>
     </section>
@@ -190,8 +210,19 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     </script>
 
+  <script>
+    function updateImage() {
+    // Lấy giá trị của room đã chọn
+    let selectedRoomId = document.getElementById("roomSelect").value;
+    // Thiết lập đường dẫn hình ảnh tương ứng (dưới mục static)
+    let imagePath = "/images/img_" + selectedRoomId + ".jpg";
+    // Cập nhật thuộc tính src của thẻ img
+    document.getElementById("roomImage").src = imagePath;
+    }
+  </script>
 
 
     <script src="/js/main.js"></script>
   </body>
+
 </html>

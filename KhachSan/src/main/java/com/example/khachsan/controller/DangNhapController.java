@@ -4,11 +4,12 @@ package com.example.khachsan.controller;
 import ch.qos.logback.core.model.Model;
 import com.example.khachsan.entity.User;
 import com.example.khachsan.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+
 
 import java.util.List;
 
@@ -29,18 +30,20 @@ public class DangNhapController {
         return new User();
     }
 
+
     @PostMapping("/DangNhap")
-    public String DangNhap(ModelMap model,@ModelAttribute User users){
-        for (User user : service.findAll()) {
-            if(user.getEmail().equals(users.getEmail()) && user.getPassword().equals(users.getPassword())){
-                model.addAttribute("user", user);
+    public String DangNhap(ModelMap model, @ModelAttribute User users, HttpSession session) {
+        User user = service.findByEmail(users.getEmail()); // Tìm người dùng theo email
+
+        if (user != null && user.getPassword().equals(users.getPassword())) {
+            session.setAttribute("loggedInUser", user); // Lưu thông tin người dùng vào session
             return "index";
-            } else {
-                model.addAttribute("message", "Sai Tên Đăng Nhập Hoặc Mật khẩu");
-            }
+        } else {
+            model.addAttribute("message", "Sai Tên Đăng Nhập Hoặc Mật khẩu");
+            return "login";
         }
-        return "login";
     }
+
 
     @GetMapping("/listAccount")
     public String showList(ModelMap model){

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDateTime;
+
 @Controller
 @RequestMapping("")
 public class DangKyController {
@@ -28,7 +30,9 @@ public class DangKyController {
     }
 
     @PostMapping(value = "/register")
-    public String dangNhap(@Valid @ModelAttribute User user, BindingResult bindingResult) {
+    public String dangKy(@Valid @ModelAttribute User user, BindingResult bindingResult) {
+        user.setCreatedAt(LocalDateTime.now());
+        user.setRole("guest");
         user.validate(user,bindingResult);
         if (bindingResult.hasErrors()){
             return "register";
