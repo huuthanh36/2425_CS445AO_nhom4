@@ -63,6 +63,8 @@ public class RoomController {
 
     @GetMapping("/listBooking")
     public String showList(ModelMap model){
+        model.addAttribute("room", new Room());
+        model.addAttribute("user", new User());
         List<Booking> list = bkService.findAll();
         model.addAttribute("bookingList", list);
         return "bookingManagement";
