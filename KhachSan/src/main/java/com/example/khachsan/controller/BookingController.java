@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -60,11 +61,12 @@ public class BookingController {
         if (booking.getCheckInDate() == null || booking.getCheckOutDate() == null) {
             bindingResult.rejectValue("checkInDate", "error.booking", "Ngày nhận phòng và ngày trả phòng là bắt buộc.");
             bindingResult.rejectValue("checkOutDate", "error.booking", "Ngày nhận phòng và ngày trả phòng là bắt buộc.");
+            model.addAttribute("roomList",rService.findAll());
             return "booknow"; // Trả về trang đặt phòng nếu thiếu thông tin
         }
 
         // Đặt ngày đặt phòng hiện tại
-        booking.setBookingDate(LocalDateTime.now());
+        booking.setBookingDate(LocalDate.now());
 
         // Tính toán tổng giá tiền dựa trên số ngày và giá phòng
         long daysBetween = ChronoUnit.DAYS.between(booking.getCheckInDate(), booking.getCheckOutDate());

@@ -4,9 +4,11 @@ package com.example.khachsan.entity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,10 +16,12 @@ public class Booking implements Validator {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookingId;
-
-    private LocalDateTime bookingDate;
-    private LocalDateTime checkInDate;
-    private LocalDateTime checkOutDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate bookingDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate checkInDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate checkOutDate;
     private double totalPrice;
     private String describe;
     @JsonManagedReference
@@ -36,7 +40,7 @@ public class Booking implements Validator {
     public Booking() {
     }
 
-    public Booking(Long bookingId, LocalDateTime bookingDate, LocalDateTime checkInDate, LocalDateTime checkOutDate, double totalPrice, String describe, Room room, User user) {
+    public Booking(Long bookingId, LocalDate bookingDate, LocalDate checkInDate, LocalDate checkOutDate, double totalPrice, String describe, Room room, User user) {
         this.bookingId = bookingId;
         this.bookingDate = bookingDate;
         this.checkInDate = checkInDate;
@@ -47,10 +51,6 @@ public class Booking implements Validator {
         this.user = user;
     }
 
-    public Booking(LocalDateTime bookingDate) {
-        this.bookingDate = bookingDate;
-    }
-
     public Long getBookingId() {
         return bookingId;
     }
@@ -59,27 +59,27 @@ public class Booking implements Validator {
         this.bookingId = bookingId;
     }
 
-    public LocalDateTime getBookingDate() {
+    public LocalDate getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(LocalDateTime bookingDate) {
+    public void setBookingDate(LocalDate bookingDate) {
         this.bookingDate = bookingDate;
     }
 
-    public LocalDateTime getCheckInDate() {
+    public LocalDate getCheckInDate() {
         return checkInDate;
     }
 
-    public void setCheckInDate(LocalDateTime checkInDate) {
+    public void setCheckInDate(LocalDate checkInDate) {
         this.checkInDate = checkInDate;
     }
 
-    public LocalDateTime getCheckOutDate() {
+    public LocalDate getCheckOutDate() {
         return checkOutDate;
     }
 
-    public void setCheckOutDate(LocalDateTime checkOutDate) {
+    public void setCheckOutDate(LocalDate checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
 
