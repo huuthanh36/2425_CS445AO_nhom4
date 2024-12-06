@@ -86,7 +86,17 @@ public class RoomController {
 
 
 
+    @GetMapping("/room") public String getRoomList(ModelMap model) {
+        List<Room> roomList = rService.findAll(); model.addAttribute("roomList", roomList);
+        return "roomManagement"; // Tên của template HTML
+    }
 
+    @PostMapping("/room/deleteCheckBox")
+    public String deleteRooms(@RequestParam("idChecked") List<Long> roomIds) {
+        for (Long roomId : roomIds) {
+            rService.delete(roomId);
+        } return "redirect:/index";
+    }
 
 
 

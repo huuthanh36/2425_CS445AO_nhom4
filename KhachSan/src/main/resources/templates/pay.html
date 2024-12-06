@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Thanh Toán</title>
-  <link rel="stylesheet" href="/https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
     body {
       background-color: #f8f9fa;
@@ -41,30 +41,34 @@
 <div class="container">
   <div class="payment-container">
     <h2 class="text-center">Form Thanh Toán</h2>
-    <form th:href="@{/pay}" method="post">
+    <form th:action="@{/pay}" method="post">
       <div class="form-group">
-        <label for="customerName">Tên Khách Hàng</label>
-        <input type="text" class="form-control" id="customerName" name="customerName" placeholder="Nhập tên của bạn">
+        <label >Tên Khách Hàng</label>
+        <label th:value="${booking.user.fullName}"></label>
       </div>
       <div class="form-group">
-        <label for="amount">Số Tiền</label>
-        <input type="number" class="form-control" id="amount" name="amount" placeholder="Nhập số tiền">
+        <label >Số Tiền</label>
+        <label th:value="${booking.totalPrice}"></label>
+      </div>
+      <div class="form-group">
+        <label >Số Tiền</label>
+        <input type="text" class="form-control" placeholder="nhập mã khuyến mãi">
       </div>
       <div class="form-group">
         <label>Hình Thức Thanh Toán</label>
         <div class="payment-option">
           <input type="radio" id="creditCard" name="paymentMethod" value="credit_card" checked>
-          <img src="/static/images/credit_card.jpg" alt="Thẻ Tín Dụng">
+          <img src="/images/credit_card.png" alt="Thẻ Tín Dụng">
           <label for="creditCard">Thẻ Tín Dụng</label>
         </div>
         <div class="payment-option">
           <input type="radio" id="paypal" name="paymentMethod" value="paypal">
-          <img src="/static/images/paypal.jpg" alt="PayPal">
+          <img src="/images/img.png" alt="PayPal">
           <label for="paypal">PayPal</label>
         </div>
         <div class="payment-option">
           <input type="radio" id="bankTransfer" name="paymentMethod" value="bank_transfer">
-          <img src="/static/images/bank_transfer.jpg" alt="Chuyển Khoản Ngân Hàng">
+          <img src="/images/bank_transfer.png"  alt="Chuyển Khoản Ngân Hàng">
           <label for="bankTransfer">Chuyển Khoản Ngân Hàng</label>
         </div>
       </div>
@@ -72,8 +76,8 @@
     </form>
   </div>
 </div>
-<script src="/https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="/https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="/https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -25,8 +25,5 @@ public class StatisticsController {
             return "statistics";
     }
 
-    @GetMapping("/statistics2")
-    public String showStatistics2() {
-        return "statistics2";
-    }
+
 }
