@@ -73,12 +73,7 @@ public class DangNhapController {
 
     @GetMapping(value = "/returnHome")
     public String showHome() {
-        return "redirect:/DangNhap";
-    }
-
-    @GetMapping(value = "/contact")
-    public String showContact() {
-        return "contact";
+        return "redirect:/index";
     }
 
 

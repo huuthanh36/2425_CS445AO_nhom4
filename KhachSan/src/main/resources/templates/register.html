@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng Ký Tài Khoản</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             display: flex;
             justify-content: center;
@@ -16,45 +16,38 @@
         }
         .container {
             background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
         }
         h2 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
+        .form-group label {
             margin-bottom: 5px;
         }
-        input[type="text"],
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 6px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        .form-group input {
+            margin-bottom: 15px;
         }
         button {
             width: 100%;
-            padding: 10px;
-            background-color: #28a745;
+            background-color: #007bff;
             color: #fff;
             border: none;
-            border-radius: 4px;
+            padding: 10px;
+            border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
         }
         button:hover {
-            background-color: #218838;
+            background-color: #0056b3;
         }
         .form-footer {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 15px;
         }
         .form-footer a {
             color: #007bff;
@@ -63,60 +56,64 @@
         .form-footer a:hover {
             text-decoration: underline;
         }
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
 <div class="container">
     <h2>Đăng Ký Tài Khoản</h2>
     <form onload="setHiddenDateTime()" th:action="@{/register}" th:object="${user}" method="post">
-
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" th:field="*{email}" required>
-            <small style="color: red" th:if="${#fields.hasErrors('email')}" th:errors ="*{email}"></small>
+            <input type="email" class="form-control" id="email" name="email" th:field="*{email}" required>
+            <small class="error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
         </div>
         <div class="form-group">
             <label for="username">Họ và Tên</label>
-            <input type="text" id="username" name="username" th:field="*{fullName}" required>
-            <small style="color: red" th:if="${#fields.hasErrors('fullName')}" th:errors ="*{fullName}"></small>
+            <input type="text" class="form-control" id="username" name="username" th:field="*{fullName}" required>
+            <small class="error-message" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></small>
         </div>
         <div class="form-group">
-            <label >Số Điện Thoại</label>
-            <input type="text" th:field="*{phone}" required>
-            <small style="color: red" th:if="${#fields.hasErrors('phone')}" th:errors ="*{phone}"></small>
+            <label for="phone">Số Điện Thoại</label>
+            <input type="text" class="form-control" id="phone" name="phone" th:field="*{phone}" required>
+            <small class="error-message" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></small>
         </div>
         <div class="form-group">
-            <label >Địa Chỉ</label>
-            <input type="text" th:field="*{address}"  required>
-            <small style="color: red" th:if="${#fields.hasErrors('address')}" th:errors ="*{address}"></small>
+            <label for="address">Địa Chỉ</label>
+            <input type="text" class="form-control" id="address" name="address" th:field="*{address}" required>
+            <small class="error-message" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></small>
         </div>
         <div class="form-group">
             <label for="password">Mật Khẩu</label>
-            <input type="password" id="password" name="password" th:field="*{password}" required>
-            <small style="color: red" th:if="${#fields.hasErrors('password')}" th:errors ="*{password}"></small>
+            <input type="password" class="form-control" id="password" name="password" th:field="*{password}" required>
+            <small class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
         </div>
         <input type="hidden" value="guest" id="hiddenGuest" name="hiddenGuest" th:field="*{role}">
-        <input type="hidden"  id="hiddenDateTime" th:field="*{createdAt}" name="hiddenDateTime">
+        <input type="hidden" id="hiddenDateTime" th:field="*{createdAt}" name="hiddenDateTime">
         <button type="submit">Đăng Ký</button>
     </form>
     <div class="form-footer">
         <p>Đã có tài khoản? <a th:href="@{/DangNhap}">Đăng nhập</a></p>
     </div>
 </div>
-<script> function setHiddenDateTime() {
-    let now = new Date();
-    var year = now.getFullYear();
-    var month = String(now.getMonth() + 1).padStart(2, '0');
-    // Tháng bắt đầu từ 0
-     var day = String(now.getDate()).padStart(2, '0');
-     var hours = String(now.getHours()).padStart(2, '0');
-     var minutes = String(now.getMinutes()).padStart(2, '0');
-     var seconds = String(now.getSeconds()).padStart(2, '0');
-     var datetimeValue = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
-     document.getElementById("hiddenDateTime").value = datetimeValue;
-     document.getElementById("hiddenGuest").value = "guest";}
+<script>
+    function setHiddenDateTime() {
+        let now = new Date();
+        let year = now.getFullYear();
+        let month = String(now.getMonth() + 1).padStart(2, '0'); // Tháng bắt đầu từ 0
+        let day = String(now.getDate()).padStart(2, '0');
+        let hours = String(now.getHours()).padStart(2, '0');
+        let minutes = String(now.getMinutes()).padStart(2, '0');
+        let seconds = String(now.getSeconds()).padStart(2, '0');
+        let datetimeValue = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+        document.getElementById("hiddenDateTime").value = datetimeValue;
+        document.getElementById("hiddenGuest").value = "guest";
+    }
 </script>
-
 </body>
 </html>
-

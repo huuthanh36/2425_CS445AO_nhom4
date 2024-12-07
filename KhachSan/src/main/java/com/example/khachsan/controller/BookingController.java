@@ -83,7 +83,7 @@ public class BookingController {
         if (bindingResult.hasErrors()) {
             return "register";
         }
-
+        booking.setUser(loggedInUser);
         // Thêm thông tin booking vào model
         model.addAttribute("booking", booking);
         return "pay";
