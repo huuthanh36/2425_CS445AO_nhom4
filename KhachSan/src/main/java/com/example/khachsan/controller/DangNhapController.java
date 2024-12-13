@@ -37,9 +37,12 @@ public class DangNhapController {
 
         if (user != null && user.getPassword().equals(users.getPassword())) {
             session.setAttribute("loggedInUser", user); // Lưu thông tin người dùng vào session
+            model.addAttribute("toastMessage", "Đăng nhập thành công!");
+            model.addAttribute("toastType", "success");
             return "index";
         } else {
-            model.addAttribute("message", "Sai Tên Đăng Nhập Hoặc Mật khẩu");
+            model.addAttribute("toastMessage", "Đăng nhập thất bại. Vui lòng thử lại.");
+            model.addAttribute("toastType", "error");
             return "login";
         }
     }

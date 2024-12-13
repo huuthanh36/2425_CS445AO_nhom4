@@ -23,6 +23,7 @@ public class Booking implements Validator {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkOutDate;
     private double totalPrice;
+    @Column(name = "`describe`")
     private String describe;
     @JsonManagedReference
     @ManyToOne

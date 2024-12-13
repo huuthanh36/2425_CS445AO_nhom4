@@ -41,7 +41,7 @@
 <div class="container">
   <div class="payment-container">
     <h2 class="text-center">Form Thanh Toán</h2>
-    <form th:action="@{/pay}" method="post">
+    <form th:action="@{/pay}" th:object="${booking}" method="post" >
       <div class="form-group">
         <label>Tên Khách Hàng</label>
         <p th:text="${booking.user.fullName}"></p>
@@ -72,6 +72,14 @@
           <label for="bankTransfer">Chuyển Khoản Ngân Hàng</label>
         </div>
       </div>
+      <input type="hidden" th:value="${booking.bookingDate}" th:field="*{bookingDate}">
+      <input type="hidden" th:value="${booking.checkInDate}" th:field="*{checkInDate}">
+      <input type="hidden" th:value="${booking.checkOutDate}" th:field="*{checkOutDate}">
+      <input type="hidden" th:value="${booking.totalPrice}" th:field="*{totalPrice}">
+      <input type="hidden" th:value="${booking.user}" th:field="*{user}">
+      <input type="hidden" th:value="${booking.room}" th:field="*{room}">
+      <input type="hidden" th:value="${booking.describe}" th:field="*{describe}">
+
       <button type="submit" class="btn btn-custom btn-block">Thanh Toán</button>
     </form>
   </div>

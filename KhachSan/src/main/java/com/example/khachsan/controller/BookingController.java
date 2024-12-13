@@ -89,4 +89,12 @@ public class BookingController {
         return "pay";
     }
 
+    @PostMapping(value="/pay")
+    public String pay(@ModelAttribute Booking booking) {
+
+        bkService.saveBooking(booking);
+        return"redirect:/booknow";
+
+    }
+
 }
