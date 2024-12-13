@@ -94,4 +94,5 @@ public class DangNhapController {
     public String showBlogSingle() {
         return "blog-single";
     }
+
 }
