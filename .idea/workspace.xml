@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b620ac8-845c-4497-a414-281975055550" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KhachSan/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/KhachSan/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KhachSan/src/main/resources/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/KhachSan/src/main/resources/templates/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,24 +63,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.C:/Users/Boon/Documents/GitHub/2425_CS445AO_nhom4/KhachSan/build.gradle.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.C:/Users/Boon/Documents/GitHub/2425_CS445AO_nhom4/KhachSan/settings.gradle.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot..executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;code&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build KhachSan.executor": "Run",
+    "Gradle.C:/Users/Boon/Documents/GitHub/2425_CS445AO_nhom4/KhachSan/build.gradle.executor": "Run",
+    "Gradle.C:/Users/Boon/Documents/GitHub/2425_CS445AO_nhom4/KhachSan/settings.gradle.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot..executor": "Run",
+    "Spring Boot.KhachSanApplication.executor": "Run",
+    "git-widget-placeholder": "code",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/DAN_CS445AO_V3/2425_CS445AO_nhom4",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Spring Boot.KhachSanApplication">
     <configuration type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <option name="ALTERNATIVE_JRE_PATH" value="$USER_HOME$/.jdks/openjdk-23.0.1" />
@@ -149,6 +160,7 @@
       <workItem from="1733130591415" duration="239000" />
       <workItem from="1733130838681" duration="2444000" />
       <workItem from="1733136656032" duration="23000" />
+      <workItem from="1734715243731" duration="2389000" />
     </task>
     <servers />
   </component>

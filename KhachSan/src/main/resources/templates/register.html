@@ -6,56 +6,121 @@
     <title>Đăng Ký Tài Khoản</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body {
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
-        .container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
+
+        html, body {
+            display: grid;
+            height: 100%;
             width: 100%;
+            place-items: center;
+            background: #f2f2f2;
         }
-        h2 {
+
+        .wrapper {
+            width: 380px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .wrapper .title {
+            font-size: 25px;
+            font-weight: 600;
             text-align: center;
-            margin-bottom: 30px;
+            line-height: 100px;
+            color: #fff;
+            user-select: none;
+            border-radius: 15px 15px 0 0;
+            background: linear-gradient(-135deg, #5BA8A0, #CBE5AE);
         }
-        .form-group label {
-            margin-bottom: 5px;
+
+        .wrapper form {
+            padding: 10px 30px 50px 30px;
         }
-        .form-group input {
-            margin-bottom: 15px;
-        }
-        button {
+
+        .wrapper form .field {
+            height: 50px;
             width: 100%;
-            background-color: #007bff;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .wrapper form .field input {
+            height: 100%;
+            width: 100%;
+            outline: none;
+            font-size: 13px;
+            padding-left: 20px;
+            border: 1px solid lightgrey;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .wrapper form .field input:focus,
+        form .field input:valid {
+            border-color: #4158d0;
+        }
+
+        .wrapper form .field label {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            color: #999999;
+            font-weight: 400;
+            font-size: 13px;
+            pointer-events: none;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+        }
+
+        form .field input:focus ~ label,
+        form .field input:valid ~ label {
+            top: 0%;
+            font-size: 13px;
+            color: #4158d0;
+            background: #fff;
+            transform: translateY(-50%);
+        }
+
+        form .field input[type="submit"] {
             color: #fff;
             border: none;
-            padding: 10px;
-            border-radius: 5px;
+            padding-left: 0;
+            margin-top: -10px;
+            font-size: 15px;
+            font-weight: 500;
             cursor: pointer;
-            font-size: 16px;
+            background: linear-gradient(-135deg, #5BA8A0, #CBE5AE);
+            transition: all 0.3s ease;
         }
-        button:hover {
-            background-color: #0056b3;
+
+        form .field input[type="submit"]:active {
+            transform: scale(0.95);
         }
-        .form-footer {
+
+        form .signup-link {
+            color: #262626;
+            margin-top: 20px;
             text-align: center;
-            margin-top: 15px;
+            font-size: 13px;
         }
-        .form-footer a {
-            color: #007bff;
+
+        form .signup-link a {
+            color: #4158d0;
             text-decoration: none;
         }
-        .form-footer a:hover {
+
+        form .signup-link a:hover {
             text-decoration: underline;
         }
+
         .error-message {
             color: red;
             font-size: 12px;
@@ -65,47 +130,51 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <h2>Đăng Ký Tài Khoản</h2>
+<div class="wrapper">
+    <div class="title">
+        Đăng Ký Tài Khoản
+    </div>
     <form onload="setHiddenDateTime()" th:action="@{/register}" th:object="${user}" method="post">
-        <div class="form-group">
-            <label for="email">Email</label>
+        <div class="field">
             <input type="email" class="form-control" id="email" name="email" th:field="*{email}" required>
+            <label>Email</label>
             <small class="error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
         </div>
-        <div class="form-group">
-            <label for="username">Họ và Tên</label>
+        <div class="field">
             <input type="text" class="form-control" id="username" name="username" th:field="*{fullName}" required>
+            <label>Họ và Tên</label>
             <small class="error-message" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></small>
         </div>
-        <div class="form-group">
-            <label for="phone">Số Điện Thoại</label>
+        <div class="field">
             <input type="text" class="form-control" id="phone" name="phone" th:field="*{phone}" required>
+            <label>Số Điện Thoại</label>
             <small class="error-message" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></small>
         </div>
-        <div class="form-group">
-            <label for="address">Địa Chỉ</label>
+        <div class="field">
             <input type="text" class="form-control" id="address" name="address" th:field="*{address}" required>
+            <label>Địa Chỉ</label>
             <small class="error-message" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></small>
         </div>
-        <div class="form-group">
-            <label for="password">Mật Khẩu</label>
+        <div class="field">
             <input type="password" class="form-control" id="password" name="password" th:field="*{password}" required>
+            <label>Mật Khẩu</label>
             <small class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
         </div>
         <input type="hidden" value="guest" id="hiddenGuest" name="hiddenGuest" th:field="*{role}">
         <input type="hidden" id="hiddenDateTime" th:field="*{createdAt}" name="hiddenDateTime">
-        <button type="submit">Đăng Ký</button>
+        <div class="field">
+            <input type="submit" value="Đăng Ký">
+        </div>
+        <div class="signup-link">
+            Đã có tài khoản? <a th:href="@{/DangNhap}">Đăng nhập</a>
+        </div>
     </form>
-    <div class="form-footer">
-        <p>Đã có tài khoản? <a th:href="@{/DangNhap}">Đăng nhập</a></p>
-    </div>
 </div>
 <script>
     function setHiddenDateTime() {
         let now = new Date();
         let year = now.getFullYear();
-        let month = String(now.getMonth() + 1).padStart(2, '0'); // Tháng bắt đầu từ 0
+        let month = String(now.getMonth() + 1).padStart(2, '0');
         let day = String(now.getDate()).padStart(2, '0');
         let hours = String(now.getHours()).padStart(2, '0');
         let minutes = String(now.getMinutes()).padStart(2, '0');
