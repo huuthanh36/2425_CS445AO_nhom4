@@ -42,7 +42,7 @@ public class User implements Validator {
     private String fullName;
     @NotEmpty
     private String address;
-    @NotEmpty
+
     private String role;
 
     private LocalDateTime createdAt;

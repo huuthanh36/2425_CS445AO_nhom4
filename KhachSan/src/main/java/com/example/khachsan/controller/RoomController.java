@@ -81,7 +81,7 @@ public class RoomController {
                 bkService.delete(idDelete);
             }
         }
-        return "redirect:/listAccount";
+        return "redirect:/listBooking";
     }
 
 
@@ -95,7 +95,7 @@ public class RoomController {
     public String deleteRooms(@RequestParam("idChecked") List<Long> roomIds) {
         for (Long roomId : roomIds) {
             rService.delete(roomId);
-        } return "redirect:/index";
+        } return "redirect:/room";
     }
 
 

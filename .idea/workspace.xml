@@ -5,10 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b620ac8-845c-4497-a414-281975055550" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KhachSan/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/KhachSan/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KhachSan/src/main/resources/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/KhachSan/src/main/resources/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KhachSan/src/main/java/com/example/khachsan/controller/DangNhapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/KhachSan/src/main/java/com/example/khachsan/controller/DangNhapController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KhachSan/src/main/java/com/example/khachsan/controller/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/KhachSan/src/main/java/com/example/khachsan/controller/RoomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KhachSan/src/main/java/com/example/khachsan/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/KhachSan/src/main/java/com/example/khachsan/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KhachSan/src/main/resources/templates/accountManagement.html" beforeDir="false" afterPath="$PROJECT_DIR$/KhachSan/src/main/resources/templates/accountManagement.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KhachSan/src/main/resources/templates/bookingManagement.html" beforeDir="false" afterPath="$PROJECT_DIR$/KhachSan/src/main/resources/templates/bookingManagement.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KhachSan/src/main/resources/templates/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/KhachSan/src/main/resources/templates/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KhachSan/src/main/resources/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/KhachSan/src/main/resources/templates/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KhachSan/src/main/resources/templates/roomManagement.html" beforeDir="false" afterPath="$PROJECT_DIR$/KhachSan/src/main/resources/templates/roomManagement.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KhachSan/src/main/resources/templates/statistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/KhachSan/src/main/resources/templates/statistics.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,12 +37,24 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="KhachSan" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
       </state>
     </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -68,6 +86,7 @@
     "Gradle.Build KhachSan.executor": "Run",
     "Gradle.C:/Users/Boon/Documents/GitHub/2425_CS445AO_nhom4/KhachSan/build.gradle.executor": "Run",
     "Gradle.C:/Users/Boon/Documents/GitHub/2425_CS445AO_nhom4/KhachSan/settings.gradle.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -160,11 +179,24 @@
       <workItem from="1733130591415" duration="239000" />
       <workItem from="1733130838681" duration="2444000" />
       <workItem from="1733136656032" duration="23000" />
-      <workItem from="1734715243731" duration="2389000" />
+      <workItem from="1734715243731" duration="4092000" />
+      <workItem from="1734845217148" duration="5560000" />
+      <workItem from="1734940667217" duration="8326000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/KhachSan/src/main/java/com/example/khachsan/controller/DangKyController.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

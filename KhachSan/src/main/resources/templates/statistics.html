@@ -1,29 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Booking Statistics</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Rubik:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="/fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="/css/style.css">
     <style>
+
+
         .chart-container {
+            margin: 20px 20px 20px 20px !important;
             display: flex;
             justify-content: space-between;
-            flex-wrap: wrap; /* Cho phép các biểu đồ tự động xuống dòng nếu không đủ chỗ */
-            width: 100%; /* Đảm bảo container chiếm toàn bộ chiều rộng */
+            flex-wrap: wrap; /* Allow charts to wrap if there's not enough space */
+            width: 100%; /* Ensure the container takes the full width */
         }
+
         .chart-container canvas {
-            width: 48%; /* Đảm bảo mỗi biểu đồ chiếm 48% chiều rộng của container */
-            max-width: 400px; /* Giới hạn chiều rộng tối đa */
-            height: 300px; /* Đặt chiều cao cụ thể cho biểu đồ */
-            max-height: 300px; /* Giới hạn chiều cao tối đa */
-            margin: 0 auto; /* Canh giữa biểu đồ nếu còn thừa khoảng trống */
+            width: 48%; /* Ensure each chart takes 48% of the container width */
+            max-width: 400px; /* Limit the maximum width */
+            height: 300px; /* Set a specific height */
+            max-height: 300px; /* Limit the maximum height */
+            margin: 0 auto; /* Center the chart if there's extra space */
+        }
+
+        .content {
+            padding-top: 100px; /* Add space between the header and content */
         }
     </style>
 </head>
 <body>
+
 <div th:insert="~{header :: header}"></div>
-<div class="chart-container">
-    <canvas id="revenueChart"></canvas>
-    <canvas id="countChart"></canvas>
+
+<div class="content">
+    <div class="chart-container">
+        <canvas id="revenueChart"></canvas>
+        <canvas id="countChart"></canvas>
+    </div>
 </div>
 
 <script>
@@ -98,5 +124,19 @@
 
     fetchChartData();
 </script>
+
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/jquery-migrate-3.0.0.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/jquery.waypoints.min.js"></script>
+<script src="/js/jquery.stellar.min.js"></script>
+
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<script src="/js/magnific-popup-options.js"></script>
+
+<script src="/js/main.js"></script>
+
 </body>
 </html>

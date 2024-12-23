@@ -1,11 +1,107 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Profile</title>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <style>
+    body {
+      background-color: #f8f9fa; /* Light background color */
+    }
+
+    .content {
+      padding: 50px 0; /* Add space above and below the content */
+    }
+
+    .profile-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .profile-header h1 {
+      font-size: 2.5em;
+      font-weight: bold;
+      color: #343a40;
+    }
+
+    .profile-header p {
+      font-size: 1.2em;
+      color: #6c757d;
+    }
+
+    .details-container {
+      background-color: #ffffff; /* White background for the details section */
+      padding: 30px;
+      border-radius: 10px; /* Rounded corners */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+      width: 100%;
+      max-width: 800px; /* Limit the max width */
+      margin: auto; /* Center the container */
+    }
+
+    .details-table {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .details-table th,
+    .details-table td {
+      padding: 15px;
+      text-align: left;
+      vertical-align: middle;
+      border-top: 1px solid #dee2e6;
+    }
+
+    .details-table th {
+      background-color: #f1f1f1;
+      width: 30%;
+    }
+
+    .btn-primary {
+      background-color: #007bff; /* Primary button color */
+      border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+      border-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-<h1>Xin chào, <span th:text="${user.fullName}"></span>!</h1>
-<p>Email: <span th:text="${user.email}"></span></p>
-<!-- Các thông tin khác -->
+
+<div class="container-fluid content">
+  <div class="profile-header">
+    <h1>User Profile</h1>
+    <p th:text="'Welcome, ' + ${user.fullName} + '!'"></p>
+  </div>
+
+  <div class="details-container">
+    <table class="details-table">
+      <tr>
+        <th>Email</th>
+        <td th:text="${user.email}"></td>
+      </tr>
+      <tr>
+        <th>Phone</th>
+        <td th:text="${user.phone}"></td>
+      </tr>
+      <tr>
+        <th>Full Name</th>
+        <td th:text="${user.fullName}"></td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td th:text="${user.address}"></td>
+      </tr>
+    </table>
+    <div class="text-center">
+      <a th:href="@{/returnHome}" class="btn btn-primary">Back to Home</a>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
